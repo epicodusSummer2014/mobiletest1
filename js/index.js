@@ -30,13 +30,16 @@ function myfunc(){
 
 function onSuccess(data) {
     //console.log(data)
-
+    alert('first alert')
     var imagedata=data;
     var TestObject = Parse.Object.extend("TestObject");
+    alert('object created')
     var parseFile = new Parse.File("mypic.jpg", {base64:imagedata});
-
+    alert('parse file created')
     parseFile.save().then(function(){
+        alert('parse filse saved')
         var testObject = new TestObject();
+        alert('testobject created')
         testObject.set("picture", parseFile)
         testObject.save();
         var photo = testObject.get("picture");
