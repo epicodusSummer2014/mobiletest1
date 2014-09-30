@@ -30,16 +30,15 @@ function myfunc(){
 
 function onSuccess(data) {
     //console.log(data)
-    alert('first alert')
+
     var imagedata=data;
     var TestObject = Parse.Object.extend("TestObject");
-    alert('object created')
+
     var parseFile = new Parse.File("mypic.jpg", {base64:imagedata});
-    alert('parse file created')
+
     parseFile.save().then(function(){
-        alert('parse filse saved')
+
         var testObject = new TestObject();
-        alert('testobject created')
         testObject.set("picture", parseFile)
         testObject.save();
         var photo = testObject.get("picture");
@@ -51,8 +50,8 @@ function onSuccess(data) {
     xhr.send();
     response = xhr.responseText
     results = JSON.parse(response)
-    alert(results.face_detection[0].age)
-    alert(results.face_detection[0].beauty)
+    alert("age: " + results.face_detection[0].age)
+    alert("beauty: " + results.face_detection[0].beauty * 100)
     alert(results.face_detection[0].emotion)
     console.log("status  " + xhr.status)
     console.log("response  " + xhr.responseText);
