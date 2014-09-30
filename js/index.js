@@ -46,7 +46,7 @@ function onSuccess(data) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://rekognition.com/func/api/?api_key=d27krKEkBgGMGkSs&api_secret=pfPCSFmsLPJtpU6t&jobs=face_age/face_beauty/face_beauty/face_sex/face_race/face_emotions&urls=" + photo.url(), false);
     xhr.send();
-
+    alert(photo.url())
     console.log("status  " + xhr.status)
     console.log("response  " + xhr.responseText);
     cameraPic.src = photo.url();
