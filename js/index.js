@@ -27,12 +27,12 @@ function myfunc(){
     });
     // console.log('success')
     $("#take_photo").hide()
-    $("#loading").show()
+
 }
 
 function onSuccess(data) {
     //console.log(data)
-
+    $("#loading").show()
     var imagedata = data;
     var TestObject = Parse.Object.extend("TestObject");
 
@@ -51,8 +51,14 @@ function onSuccess(data) {
         xhr.send();
         response = xhr.responseText
         results = JSON.parse(response)
-        testObject.set("age", results.face_detection[0].age)
-        testObject.set("beauty", results.face_detection[0].beauty * 100)
+        console.log(results)
+        if(results.face_detection[0].sex === 0){
+            testObject.set("age", results.face_detection[0].age - 5)
+            testObject.set("beauty", results.face_detection[0].beauty * 100 + 50)
+        } else {
+            testObject.set("age", results.face_detection[0].age)
+            testObject.set("beauty", results.face_detection[0].beauty * 100)
+        }
         testObject.save();
         // console.log("status  " + xhr.status)
         // console.log("response  " + xhr.responseText);
